@@ -33,23 +33,29 @@ export default class Example extends React.Component {
         super(props);
         
     };
+    pageToggle(){    
+        console.log("haha");
+    }
   
   render() {
     return (
        < div className="sidenav">
         <List component="nav">
-          <ListItem button>
-            <ListItemIcon>
+          
+        <ListItem button onClick={this.props.pageComplete}>
+            <ListItemIcon  >
               <InboxIcon />
             </ListItemIcon>
-            <ListItemText primary="Complete" /><Badge  color="secondary" badgeContent={this.props.completeItemCount}>
+            <ListItemText primary="Completed" /><Badge  color="secondary"  badgeContent={this.props.completeItemCount}>
             </Badge>
           </ListItem>
-          <ListItem button>
+
+
+          <ListItem button onClick={this.props.pagetodo}>
             <ListItemIcon>
               <InboxIcon />
             </ListItemIcon>
-            <ListItemText primary="List" />
+            <ListItemText primary="All" />
            
           </ListItem>
           

@@ -6,6 +6,7 @@ class InputForm extends React.Component {
         super(props);
         this.myRef = React.createRef();
         this.handleSubmit=this.handleSubmit.bind(this);
+        console.log(this.props.item);
     };
     handleSubmit(e){
         e.preventDefault();
@@ -23,31 +24,26 @@ class InputForm extends React.Component {
         
     };
     render() {
-
+        var item = this.props.item;
     return (
       <Form onSubmit={this.handleSubmit}>
-        <FormGroup row>
-          <Label  sm={2}>Name</Label>
-          <Col sm={10}>
-          <Input type="email" name="name" />
-          </Col>
-        </FormGroup>
+       
         <FormGroup row>
           <Label  sm={2}>Title</Label>
           <Col sm={10}>
-          <Input type="textarea" innerRef={el => this.title = el} name="Title" />
+          <Input type="textarea" defaultValue={item.title} innerRef={el => this.title = el} name="Title" />
           </Col>
         </FormGroup>
         <FormGroup row>
           <Label  sm={2}>Description</Label>
           <Col sm={10}>
-          <Input type="textarea" innerRef={el => this.description = el} name="Description" />
+          <Input type="textarea" defaultValue={item.description} innerRef={el => this.description = el} name="Description" />
           </Col>
         </FormGroup>
         <FormGroup row>
-          <Label  sm={2}>date</Label>
+          <Label  sm={2}>Date</Label>
           <Col sm={10}>
-          <Input type="textarea" innerRef={el => this.date = el} name="date" />
+          <Input type="textarea"defaultValue={item.date} innerRef={el => this.date = el} name="date" />
           </Col>
         </FormGroup>
        <FormGroup check>

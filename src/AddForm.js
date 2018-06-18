@@ -1,13 +1,11 @@
 import React from 'react';
-import { Modal,ModalHeader,ModalBody,Button, Form, FormGroup, Label, Input, FormText,Col } from 'reactstrap';
+import { Modal,ModalHeader,ModalBody,ModalFooter,Button, Form, FormGroup, Label, Input, FormText,Col } from 'reactstrap';
 
 class InputForm extends React.Component {
     constructor(props){
         super(props);
      
         this.handleSubmit=this.handleSubmit.bind(this);
-
-        console.log(this.props.AddFormShow);
        
     };
     handleSubmit(e){
@@ -20,10 +18,11 @@ class InputForm extends React.Component {
             date :this.date.value,
             Complete : false
         }
-        this.props.addItem(inputState);
+        if(this.title.value!==""){this.props.addItem(inputState);}
         this.title.value ="";
         this.description.value ="";
         this.date.value ="";
+        this.props.ChangeFormState();
         
     };
 
@@ -31,9 +30,10 @@ class InputForm extends React.Component {
         
     return (
         <Modal isOpen={this.props.AddFormShow} toggle={this.props.ChangeFormState} >
-        <ModalHeader>Edit</ModalHeader>
+        <Form onSubmit={this.handleSubmit}>
+        <ModalHeader>Add TodoList</ModalHeader>
         <ModalBody>
-      <Form onSubmit={this.handleSubmit}>
+      
         
         <FormGroup row>
           <Label  sm={2}>Title</Label>
@@ -53,14 +53,17 @@ class InputForm extends React.Component {
           <Input type="textarea" innerRef={el => this.date = el} name="date" />
           </Col>
         </FormGroup>
+        <ModalFooter>
         <FormGroup check>
-         
           <Button type="submit">add</Button>                    
         </FormGroup>
-      </Form>
+        </ModalFooter>
+      
      
       </ModalBody>
+      </Form>
       </Modal>
+      
         
     );
   }

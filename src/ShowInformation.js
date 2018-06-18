@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Modal, ModalHeader, ModalBody, ModalFooter ,ListGroup,ListGroupItem} from 'reactstrap';
+import { Container, Modal, ModalHeader, ModalBody, ModalFooter ,ListGroup,ListGroupItem, Form, FormGroup, Label, Input, FormText,Col} from 'reactstrap';
 import InputForm from './InputForm'
 import './ShowInformation.css'
 import ListItem from'./ListItem';
@@ -12,13 +12,17 @@ class ShowInformation extends React.Component {
       modal: false,
       nestedModal: false,
       closeAll: false,
-     
+      showState:[],
+      editStata:[],
     };
 
     this.toggle = this.toggle.bind(this);
     this.toggleNested = this.toggleNested.bind(this);
-    this.toggleAll = this.toggleAll.bind(this);
     this.createTasks =this.createTasks.bind(this);
+    this.editParent=this.editParent.bind(this);
+    this.editSetup=this.editSetup.bind(this);
+    this.showinformation=this.showinformation.bind(this);
+    this.toggleNone=this.toggleNone.bind(this);
   }
 
   toggle() {
@@ -30,16 +34,33 @@ class ShowInformation extends React.Component {
   toggleNested() {
     this.setState({
       nestedModal: !this.state.nestedModal,
-      closeAll: false
+      modal : false
     });
     
   }
-
-  toggleAll() {
+  
+  showinformation(state){
+    this.setState({showState: state}, function () {
+      this.toggle();
+  });
+  }
+  editSetup(state){
+    this.setState({showState: state}, function () {
+      this.toggleNested();
+  });
+  }
+  editParent(e){
+    this.props.edit(this.state.showState.task_id,this.title.value,this.description.value,this.date.value);
+    this.toggleNested();
+  }
+  toggleNone() {
     this.setState({
-      nestedModal: !this.state.nestedModal,
-      closeAll: true
+      nestedModal: false,
+      Modal: false
     });
+  }
+  onButton = event => {
+    console.log(event.target.id) // <--- the button that was clicked's id
   }
   createTasks(item){
     if(item.complete===true){
@@ -48,16 +69,17 @@ class ShowInformation extends React.Component {
       complete ="not complete"
     }
     return (<div>
-      <Button variant="outlined" className ="button_to_List"   
-      ><ListItem item={item} openEdit={this.toggleNested}/>
+     
       
-      </Button>
-      <Modal isOpen={this.state.modal}  >
-        <ModalHeader>{item.title}</ModalHeader>
+      <ListItem item={item} toggleNone={this.toggleNone} showinformation={this.showinformation}editSetup={this.editSetup} updateComplete={this.props.updateComplete} delete={this.props.delete}/>
+      
+
+      <Modal isOpen={this.state.modal} toggle={this.toggle}>
+        <ModalHeader>{this.state.showState.title}</ModalHeader>
         <ModalBody>
         <ListGroup flush>
-          <ListGroupItem >Description:{item.description} </ListGroupItem>
-          <ListGroupItem >Date:{item.date} </ListGroupItem>
+          <ListGroupItem >Description:{this.state.showState.description} </ListGroupItem>
+          <ListGroupItem >Date:{this.state.showState.date} </ListGroupItem>
           <ListGroupItem >Complete:{complete}</ListGroupItem>
           
         </ListGroup>
@@ -65,30 +87,61 @@ class ShowInformation extends React.Component {
         </ModalBody>
         <ModalFooter>
         <Button color="success" onClick={this.toggleNested}>Click Edit</Button>
-          <Button color="secondary" onClick={this.toggle}>Submit</Button>
+          <Button color="secondary" onClick={this.toggle}>Cancel</Button>
         </ModalFooter>
       </Modal>
 
       <Modal isOpen={this.state.nestedModal} toggle={this.toggleNested} onClosed={this.state.closeAll ? this.toggle : undefined}>
+      <Form onSubmit={this.handleSubmit}>
             <ModalHeader>Edit</ModalHeader>
             <ModalBody>
-              <InputForm />
+           
+              <FormGroup row>
+                <Label  sm={2}>Title</Label>
+                <Col sm={10}>
+                <Input type="textarea" defaultValue={this.state.showState.title} innerRef={el => this.title = el} name="Title" />
+              </Col>
+              </FormGroup>
+              <FormGroup row>
+                <Label  sm={2}>Description</Label>
+                <Col sm={10}>
+                <Input type="textarea" defaultValue={this.state.showState.description} innerRef={el => this.description = el} name="Description" />
+                </Col>
+              </FormGroup>
+              <FormGroup row>
+                <Label  sm={2}>Date</Label>
+                <Col sm={10}>
+                <Input type="textarea"defaultValue={this.state.showState.date} innerRef={el => this.date = el} name="date" />
+                </Col>
+              </FormGroup>
+              <FormGroup check>        
+              </FormGroup>
+           
             </ModalBody>
             <ModalFooter>
-              <Button color="primary" onClick={this.toggleNested}>Done</Button>{' '}
-              <Button color="secondary" onClick={this.toggleAll}>All Done</Button>
+              <Button color="primary" onClick={this.editParent} >Submit</Button>
+              <Button color="secondary" onClick={this.toggleNested}>Cancel</Button>
             </ModalFooter>
+            </Form>
           </Modal>
       </div>)
   }
   
   render(){
+    if (this.props.page==="todo"){
     var todoEntries = this.props.entries;
     var listItems =todoEntries.map(this.createTasks);
+    var text = "All TASKS";
+    }else{
+    var todoEntries = this.props.completeItems;
+    var listItems =todoEntries.map(this.createTasks);
+    var text = "COMPLETED TASKS";
+    }
+    
     return(
       <Container className="show_button">
     
-    <h1>List</h1>
+    <h1>{text}</h1>
     {listItems}
     </Container>
     );
