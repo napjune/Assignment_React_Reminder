@@ -7,6 +7,7 @@ import ListItem from './ListItem'
 import SideNavbar from './SideNavbar'
 import InputForm from './InputForm'
 import './TodoList.css'
+import AddForm from './AddForm'
 
  
 import {
@@ -29,12 +30,28 @@ class TodoList extends Component {
       items:[],
       completeItems:[],
       completeItemCount:"0",
-      inputformhide: false
+      inputformhide: false,
+      addFormShow :false
     };
-    
-   
+    this.addItem=this.addItem.bind(this);
+    this.ChangeAddFormState=this.ChangeAddFormState.bind(this);
+  
   }
+  addItem(newItem){
+    this.setState((prevState) => {
+      return { 
+        items: prevState.items.concat(newItem) 
+      };
+    });
+   };
 
+
+ChangeAddFormState(){
+  this.setState({
+      addFormShow :!this.state.addFormShow
+  });
+ 
+}
   
 
   
@@ -46,21 +63,23 @@ class TodoList extends Component {
       <div>
         <Navbar id = "top_bar" light expand="md">
           <NavbarBrand href="/"> Let me capture ur memories </NavbarBrand>
-         
             <Nav className="ml-auto" navbar>
+              
               <NavItem>
-              <IconButton color="#212121" aria-label="check">  
+              <IconButton color="#212121" aria-label="check" onClick={this.ChangeAddFormState}>  
                 <AddIcon />
               </IconButton >
             </NavItem>
               </Nav>
         </Navbar>
       </div>
+      <AddForm AddFormShow={this.state.addFormShow}
+                ChangeFormState={this.ChangeAddFormState}/>
     
       
       <SideNavbar completeItemCount={this.state.completeItemCount}/>
-      <InputForm/>
-      <ShowInformation />
+   
+      <ShowInformation entries={this.state.items} />
      
     </div>
         

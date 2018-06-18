@@ -1,14 +1,18 @@
 import React from 'react';
-import { Button, Form, FormGroup, Label, Input, FormText,Col } from 'reactstrap';
+import { Modal,ModalHeader,ModalBody,Button, Form, FormGroup, Label, Input, FormText,Col } from 'reactstrap';
 
 class InputForm extends React.Component {
     constructor(props){
         super(props);
-        this.myRef = React.createRef();
+     
         this.handleSubmit=this.handleSubmit.bind(this);
+
+        console.log(this.props.AddFormShow);
+       
     };
     handleSubmit(e){
         e.preventDefault();
+      
         var inputState ={
             task_id : Date.now(),
             title : this.title.value,
@@ -22,16 +26,15 @@ class InputForm extends React.Component {
         this.date.value ="";
         
     };
-    render() {
 
+    render() {
+        
     return (
+        <Modal isOpen={this.props.AddFormShow} toggle={this.props.ChangeFormState} >
+        <ModalHeader>Edit</ModalHeader>
+        <ModalBody>
       <Form onSubmit={this.handleSubmit}>
-        <FormGroup row>
-          <Label  sm={2}>Name</Label>
-          <Col sm={10}>
-          <Input type="email" name="name" />
-          </Col>
-        </FormGroup>
+        
         <FormGroup row>
           <Label  sm={2}>Title</Label>
           <Col sm={10}>
@@ -50,10 +53,15 @@ class InputForm extends React.Component {
           <Input type="textarea" innerRef={el => this.date = el} name="date" />
           </Col>
         </FormGroup>
-       <FormGroup check>
-                             
+        <FormGroup check>
+         
+          <Button type="submit">add</Button>                    
         </FormGroup>
       </Form>
+     
+      </ModalBody>
+      </Modal>
+        
     );
   }
 }

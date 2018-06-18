@@ -18,6 +18,7 @@ class ShowInformation extends React.Component {
     this.toggle = this.toggle.bind(this);
     this.toggleNested = this.toggleNested.bind(this);
     this.toggleAll = this.toggleAll.bind(this);
+    this.createTasks =this.createTasks.bind(this);
   }
 
   toggle() {
@@ -31,6 +32,7 @@ class ShowInformation extends React.Component {
       nestedModal: !this.state.nestedModal,
       closeAll: false
     });
+    
   }
 
   toggleAll() {
@@ -39,45 +41,59 @@ class ShowInformation extends React.Component {
       closeAll: true
     });
   }
-  
+  createTasks(item){
+    if(item.complete===true){
+      var complete = "complete";
+    } else{
+      complete ="not complete"
+    }
+    return (<div>
+      <Button variant="outlined" className ="button_to_List"   
+      ><ListItem item={item} openEdit={this.toggleNested}/>
+      
+      </Button>
+      <Modal isOpen={this.state.modal}  >
+        <ModalHeader>{item.title}</ModalHeader>
+        <ModalBody>
+        <ListGroup flush>
+          <ListGroupItem >Description:{item.description} </ListGroupItem>
+          <ListGroupItem >Date:{item.date} </ListGroupItem>
+          <ListGroupItem >Complete:{complete}</ListGroupItem>
+          
+        </ListGroup>
+          <br />  
+        </ModalBody>
+        <ModalFooter>
+        <Button color="success" onClick={this.toggleNested}>Click Edit</Button>
+          <Button color="secondary" onClick={this.toggle}>Submit</Button>
+        </ModalFooter>
+      </Modal>
 
-  render() {
-    return (
+      <Modal isOpen={this.state.nestedModal} toggle={this.toggleNested} onClosed={this.state.closeAll ? this.toggle : undefined}>
+            <ModalHeader>Edit</ModalHeader>
+            <ModalBody>
+              <InputForm />
+            </ModalBody>
+            <ModalFooter>
+              <Button color="primary" onClick={this.toggleNested}>Done</Button>{' '}
+              <Button color="secondary" onClick={this.toggleAll}>All Done</Button>
+            </ModalFooter>
+          </Modal>
+      </div>)
+  }
+  
+  render(){
+    var todoEntries = this.props.entries;
+    var listItems =todoEntries.map(this.createTasks);
+    return(
       <Container className="show_button">
-        
-        <h1>List</h1>
-        
-        <Button variant="outlined" className ="button_to_List"   onClick={this.toggle}><ListItem /></Button>
-        <Modal isOpen={this.state.modal}  >
-          <ModalHeader>Name</ModalHeader>
-          <ModalBody>
-          <ListGroup flush>
-            <ListGroupItem >Description: </ListGroupItem>
-            <ListGroupItem >Date: </ListGroupItem>
-            <ListGroupItem >Complete</ListGroupItem>
-            
-          </ListGroup>
-            <br />
-            
-            <Modal isOpen={this.state.nestedModal} toggle={this.toggleNested} onClosed={this.state.closeAll ? this.toggle : undefined}>
-              <ModalHeader>Edit</ModalHeader>
-              <ModalBody>
-                <InputForm />
-              </ModalBody>
-              <ModalFooter>
-                <Button color="primary" onClick={this.toggleNested}>Done</Button>{' '}
-                <Button color="secondary" onClick={this.toggleAll}>All Done</Button>
-              </ModalFooter>
-            </Modal>
-          </ModalBody>
-          <ModalFooter>
-          <Button color="success" onClick={this.toggleNested}>Click Edit</Button>
-            <Button color="secondary" onClick={this.toggle}>Submit</Button>
-          </ModalFooter>
-        </Modal>
-        </Container>
+    
+    <h1>List</h1>
+    {listItems}
+    </Container>
     );
   }
+ 
 }
 
 export default ShowInformation;

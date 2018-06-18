@@ -31,6 +31,7 @@ import Badge from '@material-ui/core/Badge';
 export default class Example extends React.Component {
     constructor(props){
         super(props);
+        
     };
   
   render() {
