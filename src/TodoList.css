@@ -1,0 +1,10 @@
+
+
+#top_bar {
+  height: 43px;
+  background-color: rgb(230, 93, 134,0.9);
+  top: 0;
+  position: fixed;
+  z-index: 200;
+  width: 100%;
+}

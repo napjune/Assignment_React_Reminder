@@ -1,0 +1,25 @@
+.sidenav {
+    user-select: none !important;
+    float: left;
+    width: 300px;
+
+    height: 1024px;
+    padding-left: 10px;
+    padding-top: 50px;
+    position: fixed;
+ 
+    max-width: 360px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    border-right: 1px solid #f1f1f1;
+    background-color: rgba(185, 185, 185, 0.1);
+    margin-top: 40px;
+}
+#list_holder {
+    width: 265px;
+    padding-bottom: 30px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    position: fixed;
+}
+
