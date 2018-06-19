@@ -1,23 +1,36 @@
 .list_box{
     
-    
+    margin-left: 200px;
     margin-top: 50px;
-    padding: 0%;
-    max-width: width 50%;
-    width: 100%;
+    width: 80%;
+    padding: 5%;
+    
 }
 .button_in_List{
-   width: 80%;
-    
+   width: 90%;
+   margin-left: 5px;
 }
-
+.divbox{
+    
+    margin-left:10px; 
+}
+@media screen and (max-width: 500px) {
+    .button_in_List{
+        width: 80%;
+        margin-left: 5px;
+     }
+    }
 
 @media screen and (max-width: 450px) {
     .list_box { margin-top: 60%;
         padding: 0%;
-        max-width: width 50%;
         width: 100%;
-        display: block; 
-                }
- 
+        margin-top: 200px;
+        margin-left: 0px;
+        min-width: 280px;
+    }
+    .divbox{
+        margin-left: 10%;
+    
+    }
 }

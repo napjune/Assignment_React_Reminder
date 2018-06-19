@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Form, FormGroup, Label, Input, FormText,Col } from 'reactstrap';
-import IconButton from '@material-ui/core/IconButton';
+import {IconButton,ListItemSecondaryAction} from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import Glyphicon from 'react-bootstrap';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -38,21 +38,22 @@ export default class ListItem extends React.Component {
   render() {
       var item =this.props.item;
     return (
-        <div className="ListItem" >
+        
 
-     
-        <Form inline onClick={()=>this.props.showinformation(item)}>
-        <FormGroup className="mb-2 mr-sm-2 mb-sm-0" color="secondary">
+      
+        <Form inline className="widthmax" onClick={()=>this.props.showinformation(item)}>
+        <FormGroup  className="FormGroup"  color="secondary" >
             <Label>
             <input defaultChecked={item.Complete} onClick={this.UpdateCompleteStatus} value={item.task_id} type="checkbox"></input>
             </Label>
         </FormGroup>
-        <FormGroup className="mb-4 mr-sm-4 mb-sm-0" >
+        <FormGroup className="FormGroup" >
        
         <Label  >{item.title}</Label>
             
         </FormGroup>
-        <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+        
+        <ListItemSecondaryAction className="EditButton">
         <Label>
                 <IconButton mini aria-label="Edit" onClick={()=>this.props.editSetup(item)}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -60,19 +61,20 @@ export default class ListItem extends React.Component {
                     </svg>
                 </IconButton>
             </Label>
-        </FormGroup>
-        <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+            </ListItemSecondaryAction>
+        
+        <ListItemSecondaryAction>
         <Label>
                 <IconButton color="secondary" aria-label="Delete" onClick={(e) => this.delete(e,item.task_id)} > 
                     <DeleteIcon />
                 </IconButton>
             
             </Label>
-        </FormGroup>
+        </ListItemSecondaryAction>
        
       </Form>
    
-        </div>
+     
          
     );
   }

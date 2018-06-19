@@ -7,4 +7,5 @@
   position: fixed;
   z-index: 200;
   width: 100%;
+  min-width: 280px;
 }

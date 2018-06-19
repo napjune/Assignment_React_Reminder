@@ -1,0 +1,20 @@
+.boxList{
+    width:100%
+}
+
+.checkList{
+    width:20%
+}
+.widthmax{
+    width: 100%;
+    
+}
+.FormGroup{
+    padding-bottom: 0px;
+}
+.EditButton{
+    right:20px;
+}
+.ListItemSecondaryAction{
+    right:20px;
+}

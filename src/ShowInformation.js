@@ -71,10 +71,10 @@ class ShowInformation extends React.Component {
     }
 
     return (
-      <div >
+      <div className="divbox">
      
    
-     <Button  className="list_box" variant="outlined" color="secondary"  > 
+     <Button className="button_in_List"  variant="outlined" color="secondary"  > 
       <ListItem item={item} toggleNone={this.toggleNone} showinformation={this.showinformation}
       editSetup={this.editSetup} updateComplete={this.props.updateComplete} delete={this.props.delete}/>
       </Button>
@@ -149,10 +149,9 @@ class ShowInformation extends React.Component {
     
     return(
       <div  className="list_box">
-    
-    <h1>{text}</h1>
-    {listItems}
-   </div>
+       <h1>{text}</h1>
+       {listItems}
+      </div>
     );
   }
  

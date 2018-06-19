@@ -144,13 +144,13 @@ pagetodo(){
               </Nav>
         </Navbar>
       </div>
-      <Grid container spacing={24}>
-      <Grid item xs={12} sm={4}>
+      <Grid container spacing={12}>
+      
       <SideNavbar completeItemCount={this.state.completeItemCount}
                   pageComplete={this.pageComplete}
                   pagetodo={this.pagetodo}/>
-      </Grid>
-        <Grid item xs={12} sm={8}>
+
+        
         <ShowInformation entries={this.state.items}
                       updateComplete={this.updateComplete}
                       delete={this.deleteItem}
@@ -158,7 +158,7 @@ pagetodo(){
                       page ={this.state.page}
                       completeItems={this.state.completeItems}/>
      
-        </Grid>
+        
       </Grid>
       <AddForm AddFormShow={this.state.addFormShow}
                 ChangeFormState={this.ChangeAddFormState}
