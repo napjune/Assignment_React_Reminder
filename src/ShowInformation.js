@@ -4,6 +4,7 @@ import InputForm from './InputForm'
 import './ShowInformation.css'
 import ListItem from'./ListItem';
 import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
 
 class ShowInformation extends React.Component {
   constructor(props) {
@@ -68,12 +69,18 @@ class ShowInformation extends React.Component {
     } else{
       complete ="not complete"
     }
-    return (<div>
-     
-      
-      <ListItem item={item} toggleNone={this.toggleNone} showinformation={this.showinformation}editSetup={this.editSetup} updateComplete={this.props.updateComplete} delete={this.props.delete}/>
-      
 
+    return (
+      <div >
+     
+   
+     <Button  className="list_box" variant="outlined" color="secondary"  > 
+      <ListItem item={item} toggleNone={this.toggleNone} showinformation={this.showinformation}
+      editSetup={this.editSetup} updateComplete={this.props.updateComplete} delete={this.props.delete}/>
+      </Button>
+      
+     
+ 
       <Modal isOpen={this.state.modal} toggle={this.toggle}>
         <ModalHeader>{this.state.showState.title}</ModalHeader>
         <ModalBody>
@@ -124,7 +131,9 @@ class ShowInformation extends React.Component {
             </ModalFooter>
             </Form>
           </Modal>
-      </div>)
+        </div>
+         
+      )
   }
   
   render(){
@@ -139,11 +148,11 @@ class ShowInformation extends React.Component {
     }
     
     return(
-      <Container className="show_button">
+      <div  className="list_box">
     
     <h1>{text}</h1>
     {listItems}
-    </Container>
+   </div>
     );
   }
  

@@ -39,10 +39,10 @@ export default class Example extends React.Component {
   
   render() {
     return (
-       < div className="sidenav">
+       < div   className="sidenav">
         <List component="nav">
           
-        <ListItem button onClick={this.props.pageComplete}>
+        <ListItem  button onClick={this.props.pageComplete}>
             <ListItemIcon  >
               <InboxIcon />
             </ListItemIcon>
@@ -51,7 +51,7 @@ export default class Example extends React.Component {
           </ListItem>
 
 
-          <ListItem button onClick={this.props.pagetodo}>
+          <ListItem className="responsive" button onClick={this.props.pagetodo}>
             <ListItemIcon>
               <InboxIcon />
             </ListItemIcon>

@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import {Button,IconButton,AppBar,Toolbar,Typography} from '@material-ui/core';
+import {Button,IconButton,AppBar,Toolbar,Typography,Grid,Paper} from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import  ShowInformation from './ShowInformation'
 import ListItem from './ListItem'
@@ -144,21 +144,30 @@ pagetodo(){
               </Nav>
         </Navbar>
       </div>
-      <AddForm AddFormShow={this.state.addFormShow}
-                ChangeFormState={this.ChangeAddFormState}
-                addItem={this.addItem}/>
-    
-      
+      <Grid container spacing={24}>
+      <Grid item xs={12} sm={4}>
       <SideNavbar completeItemCount={this.state.completeItemCount}
                   pageComplete={this.pageComplete}
                   pagetodo={this.pagetodo}/>
-   
-      <ShowInformation entries={this.state.items}
+      </Grid>
+        <Grid item xs={12} sm={8}>
+        <ShowInformation entries={this.state.items}
                       updateComplete={this.updateComplete}
                       delete={this.deleteItem}
                       edit={this.editItem}
                       page ={this.state.page}
                       completeItems={this.state.completeItems}/>
+     
+        </Grid>
+      </Grid>
+      <AddForm AddFormShow={this.state.addFormShow}
+                ChangeFormState={this.ChangeAddFormState}
+                addItem={this.addItem}/>
+    
+    
+     
+     
+   
      
     </div>
         

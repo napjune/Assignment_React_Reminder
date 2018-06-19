@@ -38,10 +38,10 @@ export default class ListItem extends React.Component {
   render() {
       var item =this.props.item;
     return (
-        <div className="ListItem" xs="6">
-     <Button outline color="secondary" className ="button_to_List"  onClick={()=>this.props.showinformation(item)} > 
-      
-        <Form inline>
+        <div className="ListItem" >
+
+     
+        <Form inline onClick={()=>this.props.showinformation(item)}>
         <FormGroup className="mb-2 mr-sm-2 mb-sm-0" color="secondary">
             <Label>
             <input defaultChecked={item.Complete} onClick={this.UpdateCompleteStatus} value={item.task_id} type="checkbox"></input>
@@ -71,7 +71,7 @@ export default class ListItem extends React.Component {
         </FormGroup>
        
       </Form>
-      </Button>
+   
         </div>
          
     );
