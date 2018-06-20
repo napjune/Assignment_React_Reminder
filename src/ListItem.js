@@ -27,7 +27,7 @@ export default class ListItem extends React.Component {
         this.props.delete(task_id);
         this.props.toggleNone();
     }
-    //   onClick={()=>this.props.showinformation(item)}    
+    //   onClick={()=>this.props.showinformation(item)}
 
     render() {
         var item = this.props.item;
