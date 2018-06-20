@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Form, FormGroup, Label, Input, FormText,Col } from 'reactstrap';
+import {Form, FormGroup, Label, Input,Col } from 'reactstrap';
 
 class InputForm extends React.Component {
     constructor(props){
