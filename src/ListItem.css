@@ -9,12 +9,7 @@
     width: 100%;
     
 }
-.FormGroup{
-    padding-bottom: 0px;
-}
+
 .EditButton{
-    right:20px;
-}
-.ListItemSecondaryAction{
-    right:20px;
+    right:0px;
 }
