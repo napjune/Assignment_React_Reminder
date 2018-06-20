@@ -57,10 +57,10 @@ class ShowInformation extends React.Component {
     console.log(event.target.id) // <--- the button that was clicked's id
   }
   createTasks(item) {
-    if (item.complete === true) {
-      var complete = "complete";
+    if (item.Complete === true) {
+      var complete = "completed";
     } else {
-      complete = "not complete"
+      complete = "not completed"
     }
 
     return (
