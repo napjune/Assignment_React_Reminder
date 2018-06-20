@@ -6,7 +6,6 @@ class InputForm extends React.Component {
         super(props);
         this.myRef = React.createRef();
         this.handleSubmit=this.handleSubmit.bind(this);
-        console.log(this.props.item);
     };
     handleSubmit(e){
         e.preventDefault();

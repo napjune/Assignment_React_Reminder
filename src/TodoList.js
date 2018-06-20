@@ -31,7 +31,6 @@ class TodoList extends Component {
     this.pageComplete = this.pageComplete.bind(this);
   }
   updateComplete(id, value) {
-    console.log(value)
     let newState = this.state.items.slice(); //copy the array
     for (const s of newState) {
       if (Number(s["task_id"]) === Number(id)) {
@@ -47,15 +46,12 @@ class TodoList extends Component {
       completeItems: completeItems,
       completeItemCount: completeItems.length
     });
-    console.log(this.state.completeItemCount)
-    console.log(completeItems)
   }
 
   editItem(task_id, title, description, date) {
-    console.log("haha");
+
     let newState = this.state.items.slice() //copy the array
     for (const s of newState) {
-      console.log(s);
       if (Number(s["task_id"]) === Number(task_id)) {
         s["title"] = title;
         s["desciption"] = description;
@@ -75,7 +71,6 @@ class TodoList extends Component {
   };
 
   deleteItem(task_id) {
-    console.log(task_id);
     var filteredItems = this.state.items.filter(function (item) {
       return (item.task_id !== task_id)
     });
@@ -88,7 +83,6 @@ class TodoList extends Component {
       completeItems: completeItems,
       completeItemCount: completeItems.length
     });
-    console.log(filteredItems);
   }
 
   ChangeAddFormState() {
@@ -98,14 +92,12 @@ class TodoList extends Component {
 
   }
   pageComplete() {
-    console.log("haha");
     this.setState({
       page: "complete"
     });
 
   }
   pagetodo() {
-    console.log("haha");
     this.setState({
       page: "todo"
     });

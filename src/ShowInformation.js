@@ -53,9 +53,7 @@ class ShowInformation extends React.Component {
       Modal: false
     });
   }
-  onButton = event => {
-    console.log(event.target.id) // <--- the button that was clicked's id
-  }
+ 
   createTasks(item) {
     if (item.Complete === true) {
       var complete = "completed";

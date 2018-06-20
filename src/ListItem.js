@@ -8,8 +8,6 @@ import './ListItem.css'
 export default class ListItem extends React.Component {
     constructor(props) {
         super(props);
-        console.log("item")
-        console.log(this.props.item);
         this.openEdit = this.openEdit.bind(this);
         this.UpdateCompleteStatus = this.UpdateCompleteStatus.bind(this);
         this.delete = this.delete.bind(this);

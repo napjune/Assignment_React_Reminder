@@ -10,10 +10,7 @@ import Badge from '@material-ui/core/Badge';
 
 
 export default class Example extends React.Component {
-    pageToggle() {
-        console.log("haha");
-    }
-
+    
     render() {
         return (
             < div className="sidenav">
